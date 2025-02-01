@@ -9,15 +9,13 @@ jobs:
   deploy:
     docker:
       - image: circleci/python:3.8
+    ENVIRONMENT:
+      IMAGETAG: << pipeline.parameters.environment >>
     steps:
-      - run:
-          name: Set environment variable
-          command: |
-            echo "export ENVIRONMENT1=saurabh" >> $BASH_ENV
       - run:
           name: Verify environment variable
           command: |
-            echo "Current environment1 is $ENVIRONMENT1"
+            echo "Current environment1 is $ENVIRONMENT"
 
 workflows:
   version: 2
