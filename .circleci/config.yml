@@ -9,8 +9,8 @@ jobs:
   deploy:
     docker:
       - image: circleci/python:3.8
-    ENVIRONMENT:
-      IMAGETAG: << pipeline.parameters.environment >>
+    environment:
+      ENVIRONMENT: << pipeline.parameters.environment >>
     steps:
       - run:
           name: Verify environment variable
