@@ -16,7 +16,7 @@ jobs:
       - checkout
       - run:
             name: "Say hello"
-            command: "echo Hello, World!"
+            command: "echo Hello, World!123"
       - run:
           name: "What was my custom environment variable?"
           command: echo ${pipeline_var1}
