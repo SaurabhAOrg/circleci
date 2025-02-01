@@ -2,6 +2,11 @@
 # See: https://circleci.com/docs/2.0/configuration-reference
 version: 2.1
 
+parameters:
+  environment:
+    type: string
+    default: "production"  # Default value
+
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
 jobs:
@@ -13,36 +18,17 @@ jobs:
     # Add steps to the job
     # See: https://circleci.com/docs/2.0/configuration-reference/#steps
     steps:
-      - checkout
       - run:
-            name: "Say hello"
-            command: "echo Hello, World!123"
+          name: Set environment variable
+          command: |
+            echo "export ENVIRONMENT=<< parameters.environment >>" >> $BASH_ENV
       - run:
-          name: "What was my custom environment variable?"
-          command: echo ${pipeline_var1}
-
-  say-hello-dummy:
-    # Specify the execution environment. You can specify an image from Dockerhub, or use one of our Convenience Images from CircleCI's Developer Hub.
-    # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
-    docker:
-      - image: cimg/base:stable
-    # Add steps to the job
-    # See: https://circleci.com/docs/2.0/configuration-reference/#steps
-    steps:
-      - checkout
-      - run:
-            name: "Say hello Dummy123"
-            command: "echo Hello, World Dummy!"
-      - run:
-          name: "What was my custom environment variable?"
-          command: echo ${globalvariable1}
-# Invoke jobs via workflows
-# See: https://circleci.com/docs/2.0/configuration-reference/#workflows
+          name: Verify environment variable
+          command: |
+            echo "Current environment: $ENVIRONMENT"
+            
 workflows:
   say-hello-workflow:
     jobs:
       - say-hello
-  say-hello-workflow-dummy:
-    jobs:
-      - say-hello-dummy
       
