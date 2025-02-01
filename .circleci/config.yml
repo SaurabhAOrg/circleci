@@ -13,12 +13,10 @@ jobs:
       - run:
           name: Set environment variable
           command: |
-            
             echo "export ENVIRONMENT1=saurabh >>" >> $BASH_ENV
       - run:
           name: Verify environment variable
           command: |
-            
             echo "Current environment1 is $ENVIRONMENT1"
 
 workflows:
