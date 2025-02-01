@@ -13,11 +13,13 @@ jobs:
       - run:
           name: Set environment variable
           command: |
-            echo "export ENVIRONMENT=<< parameters.environment >>" >> $BASH_ENV
+            
+            echo "export ENVIRONMENT1=saurabh >>" >> $BASH_ENV
       - run:
           name: Verify environment variable
           command: |
-            echo "Current environment is $ENVIRONMENT"
+            
+            echo "Current environment1 is $ENVIRONMENT1"
 
 workflows:
   version: 2
